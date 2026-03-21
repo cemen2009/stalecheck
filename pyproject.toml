@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "stalecheck"
+version = "0.1.0"
+description = "Audit your dependencies for staleness"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "click>=8.0",
+    "rich>=13.0",
+    "httpx>=0.27",
+    "packaging>=24.0",
+]
+
+[project.scripts]
+stalecheck = "stalecheck.cli:stalecheck"   # makes `stalecheck` a shell command
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "respx>=0.21",
+]
