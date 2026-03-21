@@ -12,8 +12,6 @@ def setup_logger(verbose: bool = False) -> logging.Logger:
     handler.setLevel(level)
 
     formatter = logging.Formatter(
-        # check both and delete inappropriate
-        # fmt="%(asctime)s - %(name)s - [%(levelname)s] - %(message)s",
         fmt="%(asctime)s - [%(levelname)s] - %(message)s",
         datefmt="%H:%M:%S",
     )
