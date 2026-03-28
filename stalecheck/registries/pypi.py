@@ -7,7 +7,7 @@ package metadata, specifically the latest stable version of a package.
 import httpx
 from packaging.version import Version
 
-from stalecheck.devsettings import get_settings
+from stalecheck.settings import get_settings
 from stalecheck.logger import setup_logger
 
 settings = get_settings("dev")
