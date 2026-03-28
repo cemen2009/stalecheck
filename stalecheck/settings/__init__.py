@@ -11,13 +11,7 @@ available_settings = {
 
 
 def get_settings(env: str) -> Union[DevSettings, BaseSettings]:
-    """
-    Retrieve settings for a specific environment.
-
-    :param env: The environment name (e.g., 'dev').
-    :returns: An instance of BaseSettings or its subclass.
-    """
-    settings = available_settings.get(env)
+    settings = available_settings.get(env, None)
 
     if settings is None:
         raise ValueError(f"'{env}' is not a valid environment")
