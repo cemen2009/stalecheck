@@ -5,6 +5,7 @@ This module provides functions to interact with the PyPI JSON API to fetch
 package metadata, specifically the latest stable version of a package.
 """
 import httpx
+from packaging.version import Version
 
 from stalecheck.devsettings import get_settings
 from stalecheck.logger import setup_logger
@@ -14,7 +15,7 @@ settings = get_settings("dev")
 logger = setup_logger(verbose=True)
 
 
-def get_latest_pypi_version(package: str) -> str | None:
+def get_latest_pypi_version(package: str) -> Version | None:
     """
     Fetch the latest version of a package from PyPI.
 
@@ -26,12 +27,13 @@ def get_latest_pypi_version(package: str) -> str | None:
     """
     url = f"https://pypi.org/pypi/{package}/json"
     with httpx.Client() as client:
-        logger.info(f"sent request to pypi version for {package}...")
+        logger.debug(f"Sent request to pypi version for {package}...")
         r = client.get(url, timeout=settings.REQUEST_TIMEOUT)
-        logger.info("response from pypi retrieved")
+        logger.debug("Response from pypi retrieved")
         if r.status_code != 200:
             return None
 
-        version = r.json()["info"]["version"]
-        logger.info(f"latest version of {package}: {version}")
+        version_str = r.json()["info"]["version"]
+        version = Version(version_str)
+        logger.info(f"Latest version of {package}: {version}")
         return version
