@@ -21,10 +21,23 @@ class RequirementsParser(Parser):
     a Requirement object.
     """
     def __init__(self, file: Path):
+        """
+        Initialize the parser with a file path.
+
+        :param file: Path to the requirements.txt file.
+        """
         self.logger = setup_logger(verbose=True)
         self.file: Path = file
 
     def get_packages(self) -> list[Requirement]:
+        """
+        Extract requirements from the specified file.
+
+        Iterates through the file, skipping comments and flags, and
+        parses each line as a PEP 508 requirement.
+
+        :returns: A list of parsed Requirement objects.
+        """
         reqs = []
         with open(self.file, "r") as file_obj:
             for line in file_obj:
