@@ -1,5 +1,5 @@
 from pathlib import Path
-import tomlib
+import tomllib
 
 from packaging.requirements import Requirement
 
@@ -19,7 +19,7 @@ class PyProjectParser(Parser):
         poetry tool-specific standard.
         """
         with open(self.file, "rb") as file_obj:
-            data = tomlib.load(file_obj)
+            data = tomllib.load(file_obj)
         
         reqs = []
 
@@ -45,8 +45,3 @@ class PyProjectParser(Parser):
             self.logger.debug("No poetry requirements are listed in pyproject.toml")
         
         return [Requirement(req) for req in reqs]
-
-
-parser = PyProjectParser(Path("/home/skovoroda/PycharmProjects/stalecheck/pyproject.toml"))
-print(parser.get_packages())
-
