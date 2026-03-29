@@ -12,7 +12,6 @@ available_settings = {
 
 def get_settings(env: str) -> Union[DevSettings, BaseSettings]:
     settings = available_settings.get(env, None)
-
     if settings is None:
         raise ValueError(f"'{env}' is not a valid environment")
 
