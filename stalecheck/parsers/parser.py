@@ -19,9 +19,4 @@ class Parser(Protocol):
     method that returns a list of PEP 508 Requirement objects.
     """
     def get_packages(self) -> list[Requirement]:
-        """
-        Extract a list of requirements from a dependency file.
-
-        :returns: A list of Requirement objects.
-        """
         ...
