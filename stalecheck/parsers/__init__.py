@@ -5,7 +5,6 @@ from .requirements import RequirementsTxtParser
 from .pyproject import PyProjectParser
 from .npm import NpmParser
 
-
 parsers = {
     "requirements.txt": RequirementsTxtParser,
     "pyproject.toml": PyProjectParser,

@@ -4,6 +4,7 @@ PyPI Registry integration for stalecheck.
 This module provides functions to interact with the PyPI JSON API to fetch
 package metadata, specifically the latest stable version of a package.
 """
+
 import httpx
 from packaging.version import Version
 

@@ -7,7 +7,6 @@ class VersionSeverity(StrEnum):
     minor = auto()
     major = auto()
     ancient = auto()
-    unknown = auto()
 
 
 @dataclass

@@ -20,16 +20,15 @@ class PyProjectParser(Parser):
         """
         with open(self.file, "rb") as file_obj:
             data = tomllib.load(file_obj)
-        
+
         reqs = []
 
         pep621_reqs = data.get("project", {}).get("dependencies", [])
         if pep621_reqs:
             self.logger.debug("PEP 621 requirements are listed in pyproject.toml")
-            reqs += pep621_reqs        
+            reqs += pep621_reqs
         else:
             self.logger.debug("No PEP 621 requirements are listed in pyproject.toml")
-
 
         poetry_reqs = data.get("tool", {}).get("poetry", {}).get("dependencies", {})
         if poetry_reqs:
@@ -43,5 +42,5 @@ class PyProjectParser(Parser):
                 reqs.append(f"{name}=={version}" if isinstance(version, str) else name)
         else:
             self.logger.debug("No poetry requirements are listed in pyproject.toml")
-        
+
         return [Requirement(req) for req in reqs]

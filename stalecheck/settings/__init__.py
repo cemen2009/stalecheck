@@ -4,7 +4,6 @@ from pydantic_settings import BaseSettings
 
 from stalecheck.settings.dev import DevSettings
 
-
 available_settings = {
     "dev": DevSettings(),
 }
