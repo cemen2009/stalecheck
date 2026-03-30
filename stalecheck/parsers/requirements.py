@@ -12,7 +12,7 @@ from stalecheck.logger import setup_logger
 from stalecheck.parsers.parser import Parser
 
 
-class RequirementsParser(Parser):
+class RequirementsTxtParser(Parser):
     """
     Parser implementation that handles requirements.txt files.
     
@@ -45,3 +45,10 @@ class RequirementsParser(Parser):
                     self.logger.error(f"Failed to parse line {line}: {str(e)}")
         
         return reqs
+
+
+if __name__ == "__main__":
+    test = RequirementsTxtParser(Path("/home/skovoroda/PycharmProjects/stalecheck/requirements.txt"))
+    reqs = test.get_packages()
+    for req in reqs:
+        print(req.specifier[0].version)
